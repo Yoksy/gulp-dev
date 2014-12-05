@@ -58,7 +58,7 @@ function processFileContentsForBlock(
   for(i = 0; i < lines.length; i++) {
     var line = lines[i];
 
-    if(line === endBlockComment) {
+    if(line.indexOf(endBlockComment) > -1) {
      inBlock = false;
     }
 
@@ -75,9 +75,7 @@ function processFileContentsForBlock(
       }
     }
 
-    if(line === startBlockComment || line === endBlockComment) {
-      inBlock = line === startBlockComment;
-    }
+    inBlock = (line.indexOf(startBlockComment) > -1);
   }
 
   return lines.join('\n');
